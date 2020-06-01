@@ -7,6 +7,8 @@ export default function Product({
   title,
   branch,
   addToCart,
+  inCart,
+  clearCart,
 }) {
   const mount = Math.floor(
     (productDetail.price * productDetail.discount) / 100
@@ -42,8 +44,18 @@ export default function Product({
           </li>
         ))}
       </ul>
-      <button className="add-cart" onClick={() => addToCart(productDetail.id)}>
-        Add to cart
+      <button
+        className="add-cart"
+        onClick={
+          inCart
+            ? () => console.log("incart")
+            : () => addToCart(productDetail.id)
+        }
+      >
+        {inCart ? "in cart" : "Add to cart"}
+      </button>
+      <button className="add-cart" onClick={() => clearCart()}>
+        Clear
       </button>
     </div>
   );
